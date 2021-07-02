@@ -1,5 +1,8 @@
 package HashMap_Practice;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Anagram {
     public static void main(String[] args) {
 
@@ -12,6 +15,27 @@ public class Anagram {
         System.out.println(isAnagram(s3, t3));
     }
 
+    public static boolean isAnagram(String str1, String str2){
+        if(str1.length() != str2.length()){
+            return false;
+        }
+        Map<Character, Integer> map = new HashMap<>();
+
+        for(char c : str1.toCharArray()){
+            map.put(c, map.getOrDefault(c, 0) + 1);
+        }
+
+        for(char c : str2.toCharArray()){
+            if(!map.containsKey(c) || map.get(c) <= 0){
+                return false;
+            }else{
+                map.put(c, map.get(c) - 1);
+            }
+        }
+        return true;
+    }
+
+    /*
     public static boolean isAnagram(String str1, String str2){
         if(str1 == null || str1.length() == 0){
             return false;
@@ -42,4 +66,6 @@ public class Anagram {
 
         return true;
     }
+
+     */
 }
